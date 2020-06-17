@@ -1,9 +1,11 @@
 package com.Bridgelabz;
 
-public class Main {
+public class AddressBookMain {
 
     public static void main(String[] args) {
 	// write your code here
-        System.out.println("Welcom to AddressBook ");
+        System.out.println("Welcome to AddressBook ");
+        
+
     }
 }
