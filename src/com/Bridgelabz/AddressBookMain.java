@@ -1,160 +1,112 @@
 package com.Bridgelabz;
 
-    import java.util.ArrayList;
-    import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-
-public class AddressBookMain {
-    Scanner sc = new Scanner(System.in);
-    ArrayList<Person> arrayListPerson = new ArrayList<Person>();
-    Person p = new Person("", "", "", "", "", "");
-    int choice = 0;
-    // Person p;
-
-    public void addPerson() {
-        System.out.println("Enter new FirstName");
-        String firstname = sc.nextLine();
-        p.setFirstName(firstname);
-
-        System.out.println("Enter new LastName");
-        String lastname = sc.nextLine();
-        p.setLastName(lastname);
-        System.out.println("Enter new City");
-        String city = sc.nextLine();
-        p.setCity(city);
-        System.out.println("Enter new State");
-        String state = sc.nextLine();
-        p.setState(state);
-        System.out.println("Enter new ZipCode");
-        String zipcode = sc.nextLine();
-        p.setZipCode(zipcode);
-        System.out.println("Enter new PhoneNumber");
-        String phoneNumber = sc.nextLine();
-        p.setPhoneNumber(phoneNumber);
-        System.out.println("Added new Person");
-
-
-        arrayListPerson.add(p);
+public class AddressBookMain{
+    ArrayList<Person>personInfoArrayList=new ArrayList<Person>();
+    private final static Scanner sc = new Scanner(System.in);
+    public void addPersonInfo(){
+        System.out.println("Press First name");
+        String firstName=sc.nextLine();
+        System.out.println("Press Last name");
+        String lastName=sc.nextLine();
+        System.out.println("Press City");
+        String city=sc.nextLine();
+        System.out.println("Press State");
+        String state=sc.nextLine();
+        System.out.println("Press zipCode");
+        String zipCode=sc.nextLine();
+        System.out.println("Press PhoneNumber");
+        String phoneNumber=sc.nextLine();
+        Person p = new Person(firstName,lastName,city,state,zipCode,phoneNumber);
+        personInfoArrayList.add(p);
 
     }
-
-    public void display() {
-        for (Person person : arrayListPerson) {
-
-            System.out.println(arrayListPerson);
-        }
-
-    }
-
-    public void editPerson() {
-
-        //Person editdetails = new Person(" ", " ", " ", " ", " ", "");
-        System.out.println("Enter the phone number to match and edit");
-        String newNumber = sc.nextLine();
-
-        //for (Person person : arrayListPerson) {
-        if (arrayListPerson.get(0).getPhoneNumber().equals(newNumber)) {
-            System.out.println("Enter  1 to edit city ");
-            System.out.println("Enter  2 to edit State ");
-            System.out.println("Enter  3 to edit Zip ");
-            System.out.println("Enter  4 to edit Phone Number ");
-            System.out.println("Enter  5 to EXIT ");
-            System.out.println("Enter  your choice ");
-            int choice = sc.nextInt();
-            System.out.println("you choose - " + choice);
-            boolean cont=true;
-            while (cont==true) {
-                switch (choice) {
-                    case 1:
-                        System.out.println("Enter new City");
-                        String newCity = sc.nextLine();
-                        p.setCity(newCity);
-                        cont=false;
-                        break;
-
-                    case 2:
-                        System.out.println("Enter new State");
-                        String newState = sc.nextLine();
-                        p.setState(newState);
-                        cont=false;
-                        break;
-                    case 3:
-                        System.out.println("Enter new ZipCode");
-                        String newZipCode = sc.nextLine();
-                        p.setZipCode(newZipCode);
-                        cont=false;
-                        break;
-                    case 4:
-                        System.out.println("Enter new PhoneNumber");
-                        String newPhoneNumber = sc.nextLine();
-                        p.setPhoneNumber(newPhoneNumber);
-                        cont=false;
-                        break;
-
-                    case 5:
-                        System.out.println("exit ");
-                        cont=false;
-                        break;
-                    default:
-                        System.out.println("Enter the choice in given range");
-                        break;
-                }
-            }
-            arrayListPerson.add(p);
-
-        }
-    }
-
-
-        public static void main(String args[])
-
+    public void editperson()
+    {
+        Person editPersonArray=new Person("","","","","","");
+        System.out.println("Enter the phonenumber to select Person and edit ");
+        String num=sc.nextLine();
+        for(Person person:personInfoArrayList)
         {
-            // write your code here
-            System.out.println("Welcome to AddressBook ");
-            AddressBookMain m = new AddressBookMain();
-            Scanner s = new Scanner(System.in);
-            System.out.println("Enter the options ");
-/*
-        System.out.println("Enter 1 to create addressbook");
-        System.out.println("Enter 2 to edit addressbook");
-        System.out.println("Enter 3 to sort addressbook alphabetically");
-        System.out.println("Enter 4 to view addressbook by City and State");
-        System.out.println("Enter 5 to sort by city or State");
-        System.out.println("Enter 6 to  search person by city");
-        System.out.println("Enter 7 to quit");
-        int option=s.nextInt();
-        switch (option){
-            case 1:
-                System.out.println("Enter Person details");
-                m.addPerson();
-                m.display();
-                break;
-            case 2:
-                System.out.println("Enter the choice to edit");
-                m.editPerson();
-                m.display();
-                break;
-            case 3:
-                System.out.println("Sorting alphabetically");
-                break;
-            case 4:
-                System.out.println("View By city and state");
-                break;
-            case  5:
-                System.out.println("Sort by city or state");
-                break;
-            case 6:
-                System.out.println("Search a person by city");
-                break;
-            case 7:
-                System.out.println("Quitiing");
-                break;
-        }*/
-            m.addPerson();
-            m.display();
-            m.editPerson();
-            m.display();
+            if(person.getPhoneNumber().equals(num))
+            {
+                editPersonArray=person;
+            }
+        }
+        boolean counter=false;
+        do{
+            System.out.println("Press 1 for editing city");
+            System.out.println("Press 2 for editing state");
+            System.out.println("Press 3 for editing zipCode");
+            System.out.println("Press 4 for editing phone number");
+            System.out.println("Press 5 to Exit");
+            int selector=sc.nextInt();
+            sc.nextLine();
+            switch (selector) {
+                case 1:
+                    System.out.println("enter new city");
+                    String city=sc.nextLine();
+                    editPersonArray.setCity(city);
+                    break;
+                case 2:
+                    System.out.println("enter new state");
+                    String state=sc.nextLine();
+                    editPersonArray.setState(state);
+                    break;
+                case 3:
+                    System.out.println("enter new zipCode");
+                    String zipCode=sc.nextLine();
+                    editPersonArray.setZipCode(zipCode);
+                    break;
+                case 4:
+                    System.out.println("enter new phone number");
+                    String phoneNumber=sc.nextLine();
+                    editPersonArray.setPhoneNumber(phoneNumber);
+                    break;
+                case 5:
+                    counter=true;
+                    break;
+            }
 
+        }while(!counter);
 
+    }
+    public void displayAddressBook()
+    {
+        for(Person p:personInfoArrayList) {
+            System.out.println(p);
         }
     }
+
+    public static void main(String[] args)
+    {
+        boolean counter=false;
+        AddressBookMain ad=new AddressBookMain();
+        do{
+            System.out.println("Press 1 - Add Person Information");
+            System.out.println("Press 2 - Edit Person Information");
+            System.out.println("Press 3 - Exit");
+
+            int option=sc.nextInt();
+            sc.nextLine();
+            switch (option) {
+                case 1:
+                    ad.addPersonInfo();
+                    break;
+                case 2:
+                    ad.displayAddressBook();
+                    ad.editperson();
+                    break;
+                case 3:
+                    System.out.println(ad);
+                    counter=true;
+                    break;
+            }
+        }while (!counter);
+        ad.displayAddressBook();
+
+    }
+}
+
