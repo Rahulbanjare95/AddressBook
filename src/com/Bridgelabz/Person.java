@@ -1,14 +1,13 @@
 package com.Bridgelabz;
-
-public class Person {
+ public  class Person {
     private String firstName;
     private String lastName;
     public String city;
     public String state;
     public int zipCode;
-    public long phoneNumber;
+    public String phoneNumber;
 
-    public Person(String firstName, String lastName, String city, String state, int zipCode, long phoneNumber) {
+    public Person(String firstName, String lastName, String city, String state, int zipCode, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -49,11 +48,11 @@ public class Person {
         this.zipCode = zipCode;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
