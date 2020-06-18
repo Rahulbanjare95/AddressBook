@@ -15,17 +15,26 @@ public  class Person {
             this.state = state;
             this.zipCode = zipCode;
             this.phoneNumber = phoneNumber;
+
         }
 
-        public String getLastName(String lname) {
-            return lastName;
-        }
+    public String getFirstName() {
+        return firstName;
+    }
 
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-        public String getCity() {
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCity() {
             return city;
         }
 
@@ -57,13 +66,6 @@ public  class Person {
             this.phoneNumber = phoneNumber;
         }
 
-        public String getFirstName(String firstname) {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
 
         @Override
         public String toString() {

@@ -79,6 +79,19 @@ public class AddressBookMain{
             System.out.println(p);
         }
     }
+    public void deleteUsingName(){
+        System.out.println("Enter the first name of the person you want to delete");
+        String nameinput=sc.nextLine();
+        for(Person p:personInfoArrayList)
+        {
+            if(p.getFirstName().equals(nameinput))
+            {
+                personInfoArrayList.remove(p);
+            }
+            else
+                System.out.println("No name found");
+        }
+    }
 
     public static void main(String[] args)
     {
@@ -87,22 +100,29 @@ public class AddressBookMain{
         do{
             System.out.println("Press 1 - Add Person Information");
             System.out.println("Press 2 - Edit Person Information");
-            System.out.println("Press 3 - Exit");
-
+            System.out.println("Press 3 - Delete Person by name");
+            System.out.println("Press 4 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
             switch (option) {
                 case 1:
                     ad.addPersonInfo();
+                    ad.displayAddressBook();
                     break;
                 case 2:
                     ad.displayAddressBook();
                     ad.editperson();
+                    ad.displayAddressBook();
                     break;
                 case 3:
+                    ad.deleteUsingName();
+                    ad.displayAddressBook();
+                    break;
+                case 4:
                     System.out.println(ad);
                     counter=true;
                     break;
+
             }
         }while (!counter);
         ad.displayAddressBook();
