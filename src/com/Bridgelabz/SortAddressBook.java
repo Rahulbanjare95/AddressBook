@@ -18,6 +18,21 @@ public class SortAddressBook {
         }
 
     }
+    public static void sortByZip(ArrayList<Person>p){
+        Collections.sort(p,Person.zipSort);
+        for (Person psort:p) {
+            System.out.println(psort);
+
+        }
+    };
+    public static void sortByState(ArrayList<Person>p){
+        Collections.sort(p,Person.stateSort);
+        for (Person psort:p) {
+            System.out.println(psort);
+
+        }
+    };
+
 
 
 }

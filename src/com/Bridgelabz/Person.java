@@ -87,6 +87,22 @@ public  class Person {
                 return cityOne.compareTo(citySecond);
             }
         };
+        public static Comparator<Person> stateSort=new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                String stateOne=o1.getState();
+                String stateSecond=o2.getState();
+                return stateOne.compareTo(stateSecond);
+            }
+        };
+            public static Comparator<Person> zipSort=new Comparator<Person>() {
+                @Override
+                public int compare(Person o1, Person o2) {
+                String zipOne=o1.getZipCode();
+                String zipSecond=o2.getZipCode();
+                return zipOne.compareTo(zipSecond);
+            }
+        };
 
         @Override
         public String toString() {

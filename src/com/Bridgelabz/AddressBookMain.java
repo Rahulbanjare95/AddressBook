@@ -132,7 +132,11 @@ public class AddressBookMain{
             System.out.println("Press 2 - Edit Person Information");
             System.out.println("Press 3 - Delete Person by name");
             System.out.println("Press 4 - Sort by firstname");
-            System.out.println("Press 5 - Exit");
+            System.out.println("Press 5 - Sort by City");
+            System.out.println("Press 6 - Sort by State");
+            System.out.println("Press 7 - Sort by zipCode");
+
+            System.out.println("Press 8 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
             switch (option) {
@@ -153,8 +157,20 @@ public class AddressBookMain{
                     System.out.println("Sorting by firstname");
                     SortAddressBook.sortByFirstName(personInfoArrayList);
                     break;
+                case 5:
+                    System.out.println("Sorting by city");
+                    SortAddressBook.sortByCity(personInfoArrayList);
+                    break;
                 case 6:
+                    System.out.println("Sorting by state");
+                    SortAddressBook.sortByState(personInfoArrayList);
+                    break;
+                case 7:
+                    System.out.println("Sorting by ZipCode");
+                    SortAddressBook.sortByZip(personInfoArrayList);
+                    break;
 
+                case 8:
                     counter=true;
                     break;
 
