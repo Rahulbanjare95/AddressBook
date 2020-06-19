@@ -1,7 +1,10 @@
 package com.Bridgelabz;
 
+import java.util.Comparator;
+
 public  class Person {
-        private String firstName;
+
+    private String firstName;
         private String lastName;
         public String city;
         public String state;
@@ -66,6 +69,24 @@ public  class Person {
             this.phoneNumber = phoneNumber;
         }
 
+
+        public static Comparator<Person> nameSort=new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                String firstName=o1.getFirstName();
+                String firstNameSecond=o2.getFirstName();
+                return firstName.compareTo(firstNameSecond);
+            }
+        };
+        public static Comparator<Person> citySort=new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                String cityOne=o1.getCity();
+                String citySecond=o2.getCity();
+
+                return cityOne.compareTo(citySecond);
+            }
+        };
 
         @Override
         public String toString() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain{
-    ArrayList<Person>personInfoArrayList=new ArrayList<Person>();
+    static ArrayList<Person> personInfoArrayList=new ArrayList<Person>();
     private final static Scanner sc = new Scanner(System.in);
 
     public void addPersonInfo(){
@@ -131,7 +131,8 @@ public class AddressBookMain{
             System.out.println("Press 1 - Add Person Information");
             System.out.println("Press 2 - Edit Person Information");
             System.out.println("Press 3 - Delete Person by name");
-            System.out.println("Press 4 - Exit");
+            System.out.println("Press 4 - Sort by firstname");
+            System.out.println("Press 5 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
             switch (option) {
@@ -149,7 +150,11 @@ public class AddressBookMain{
                     ad.displayAddressBook();
                     break;
                 case 4:
-                    System.out.println(ad);
+                    System.out.println("Sorting by firstname");
+                    SortAddressBook.sortByFirstName(personInfoArrayList);
+                    break;
+                case 6:
+
                     counter=true;
                     break;
 
