@@ -1,12 +1,10 @@
 package com.Bridgelabz;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookMain{
     static ArrayList<Person> personInfoArrayList=new ArrayList<Person>();
     private final static Scanner sc = new Scanner(System.in);
-
     public void addPersonInfo(){
         int check=0;
         String firstName = null;
@@ -35,6 +33,31 @@ public class AddressBookMain{
         Person personAdded = new Person(firstName,lastName,city,state,zipCode,phoneNumber);
         personInfoArrayList.add(personAdded);
     }
+    public Map<String,String> cityHashTable(){
+        Map<String,String> cityHashTable=new Hashtable<>();
+        for (Person p: personInfoArrayList) {
+            cityHashTable.put(p.getFirstName(),p.getCity());
+        }
+        return  cityHashTable;
+    }
+    public Map<String,String> stateHashTable(){
+        Map<String,String> stateHashTable=new Hashtable<>();
+        for (Person p :personInfoArrayList) {
+            stateHashTable.put(p.getFirstName(),p.getState());
+        }
+        return stateHashTable;
+    }
+    public void viewPersonByCityAndState(){
+        Map<String,String> cityMapping=cityHashTable();
+        Map<String,String> stateMapping=stateHashTable();
+        String citySearch,stateSearch;
+        System.out.println("Enter City to view");
+        citySearch=sc.nextLine();
+        System.out.println("Enter State to view");
+        stateSearch=sc.nextLine();
+        SearchAccordingly.searchCityStateWise(stateMapping,cityMapping,stateSearch,citySearch);
+
+    }
     public boolean checkExists(String namecheck)
     {
         int flag=0;
@@ -52,6 +75,7 @@ public class AddressBookMain{
         }
         return false;
     }
+
     public void editperson()
     {
         Person editPersonArray=new Person("","","","","","");
@@ -122,11 +146,12 @@ public class AddressBookMain{
                 System.out.println("No name found");
         }
     }
-
     public static void main(String[] args)
     {
         boolean counter=false;
         AddressBookMain ad=new AddressBookMain();
+        SearchAccordingly searchacc=new SearchAccordingly();
+        SortAddressBook sab=new SortAddressBook();
         do{
             System.out.println("Press 1 - Add Person Information");
             System.out.println("Press 2 - Edit Person Information");
@@ -135,8 +160,10 @@ public class AddressBookMain{
             System.out.println("Press 5 - Sort by City");
             System.out.println("Press 6 - Sort by State");
             System.out.println("Press 7 - Sort by zipCode");
+            System.out.println("Press 8 - View by City State");
 
-            System.out.println("Press 8 - Exit");
+
+            System.out.println("Press 9 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
             switch (option) {
@@ -171,6 +198,10 @@ public class AddressBookMain{
                     break;
 
                 case 8:
+                    System.out.println("Searching by City");
+                    searchacc.searchPersonByCity(personInfoArrayList);
+                    break;
+                case 9:
                     counter=true;
                     break;
 
