@@ -161,9 +161,9 @@ public class AddressBookMain{
             System.out.println("Press 6 - Sort by State");
             System.out.println("Press 7 - Sort by zipCode");
             System.out.println("Press 8 - View by City State");
+            System.out.println("Press 9 - Search Person by  State");
 
-
-            System.out.println("Press 9 - Exit");
+            System.out.println("Press 10 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
             switch (option) {
@@ -202,6 +202,9 @@ public class AddressBookMain{
                     searchacc.searchPersonByCity(personInfoArrayList);
                     break;
                 case 9:
+                    searchacc.searchPersonByState(personInfoArrayList);
+                    break;
+                case 10:
                     counter=true;
                     break;
 
