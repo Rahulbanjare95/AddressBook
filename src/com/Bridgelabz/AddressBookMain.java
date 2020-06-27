@@ -3,7 +3,7 @@ package com.Bridgelabz;
 import java.util.*;
 
 public class AddressBookMain{
-    static ArrayList<Person> personInfoArrayList=new ArrayList<Person>();
+    public static ArrayList<Person> personInfoArrayList=new ArrayList<Person>();
     private final static Scanner sc = new Scanner(System.in);
     public void addPersonInfo(){
         int check=0;
@@ -13,13 +13,12 @@ public class AddressBookMain{
             System.out.print("add first name : ");
             firstName = sc.nextLine();
             if (checkExists(firstName)) {
-                System.out.println(" firstname already exist cannot be added ");
+                System.out.println(" first name already exist cannot be added ");
             }
             else {
                 check=1;
             }
         }
-
         System.out.println("Add Last name");
         lastName=sc.nextLine();
         System.out.println("Add City");
@@ -47,17 +46,6 @@ public class AddressBookMain{
         }
         return stateHashTable;
     }
-    public void viewPersonByCityAndState(){
-        Map<String,String> cityMapping=cityHashTable();
-        Map<String,String> stateMapping=stateHashTable();
-        String citySearch,stateSearch;
-        System.out.println("Enter City to view");
-        citySearch=sc.nextLine();
-        System.out.println("Enter State to view");
-        stateSearch=sc.nextLine();
-        SearchAccordingly.searchCityStateWise(stateMapping,cityMapping,stateSearch,citySearch);
-
-    }
     public boolean checkExists(String namecheck)
     {
         int flag=0;
@@ -75,7 +63,6 @@ public class AddressBookMain{
         }
         return false;
     }
-
     public void editperson()
     {
         Person editPersonArray=new Person("","","","","","");
@@ -122,28 +109,25 @@ public class AddressBookMain{
                     counter=true;
                     break;
             }
-
         }while(!counter);
-
     }
     public void displayAddressBook()
     {
-        for(Person p:personInfoArrayList) {
-            System.out.println(p);
-        }
+        personInfoArrayList.forEach(p -> System.out.println(p));
     }
     public void deleteUsingName(){
         System.out.println("Enter first name of the person you want to delete");
         String nameinput=sc.nextLine();
-        for(Person p:personInfoArrayList)
-        {
-            if(p.getFirstName().equals(nameinput))
-            {
-                System.out.println("Match found ! Now deleting");
-                personInfoArrayList.remove(p);
+        boolean flag=false;
+        for(int index=0;index<personInfoArrayList.size();index++){
+            if((personInfoArrayList.get(index).getFirstName().equalsIgnoreCase(nameinput))){
+                personInfoArrayList.remove(index);
+                flag=true;
+                break;
             }
-            else
-                System.out.println("No name found");
+        }
+        if(!flag){
+            System.out.println("Name not found in addressbook");
         }
     }
     public static void main(String[] args)
@@ -162,7 +146,6 @@ public class AddressBookMain{
             System.out.println("Press 7 - Sort by zipCode");
             System.out.println("Press 8 - View by City State");
             System.out.println("Press 9 - Search Person by  State");
-
             System.out.println("Press 10 - Exit");
             int option=sc.nextInt();
             sc.nextLine();
@@ -198,20 +181,23 @@ public class AddressBookMain{
                     break;
 
                 case 8:
-                    System.out.println("Searching by City");
-                    searchacc.searchPersonByCity(personInfoArrayList);
+                    System.out.println("View by City And State");
+                    SearchAccordingly.viewCityStateWise(personInfoArrayList);
                     break;
                 case 9:
-                    searchacc.searchPersonByState(personInfoArrayList);
+                    System.out.println("Search by city");
+                    SearchAccordingly.searchPersonByCity(personInfoArrayList);
                     break;
                 case 10:
+                    System.out.println(personInfoArrayList);
                     counter=true;
                     break;
-
+                default:
+                    System.out.println("Enter correct choice");
+                    break;
             }
         }while (!counter);
         ad.displayAddressBook();
-
     }
 }
 
