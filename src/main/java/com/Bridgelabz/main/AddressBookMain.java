@@ -1,4 +1,8 @@
-package com.Bridgelabz;
+package com.Bridgelabz.main;
+
+import com.Bridgelabz.models.Person;
+import com.Bridgelabz.services.SearchAccordingly;
+import com.Bridgelabz.services.SortAddressBook;
 
 import java.util.*;
 
@@ -198,6 +202,6 @@ public class AddressBookMain{
             }
         }while (!counter);
         ad.displayAddressBook();
-    }
+   }
 }
 

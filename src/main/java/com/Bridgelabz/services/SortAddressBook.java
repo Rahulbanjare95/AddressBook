@@ -1,4 +1,6 @@
-package com.Bridgelabz;
+package com.Bridgelabz.services;
+import com.Bridgelabz.models.Person;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package com.Bridgelabz;
+package com.Bridgelabz.models;
 
 public  class Person {
     private String firstName;

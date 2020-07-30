@@ -1,12 +1,15 @@
-package com.Bridgelabz;
+package com.Bridgelabz.services;
+import com.Bridgelabz.models.Person;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchAccordingly {
     static Scanner sc =  new Scanner(System.in);
    public static void viewCityStateWise(ArrayList<Person>personInfo) {
        boolean flag =false;
-       Map<String,Person> citywithPerson=new HashMap<String,Person>();
-       Map<String,Person> statewithPerson=new HashMap<String,Person>();
+       Map<String,Person> citywithPerson=new HashMap<>();
+       Map<String,Person> statewithPerson=new HashMap<>();
        for (Person p:personInfo) {
            citywithPerson.put(p.getCity(),p);
            statewithPerson.put(p.getCity(),p);
@@ -15,28 +18,28 @@ public class SearchAccordingly {
        String viewByCity=sc.nextLine();
        System.out.println("Enter the state name to view");
        String viewByState=sc.nextLine();
-       for (Map.Entry<String,Person> state:statewithPerson.entrySet()){
-           if(viewByState.equals(state.getKey())){
-               for (Map.Entry<String,Person>city:citywithPerson.entrySet()){
-                   if(viewByCity.equals(city.getKey())){
-                       System.out.println(city.getValue());
-                       flag=true;
-                   }
-               }
-           }
-       }
-       if(!flag){
-           System.out.println("Enter matching city with state");
-       }
-   }
-//        List<String> matchedCity=cityMapping.entrySet().stream().
-//                filter(i ->citySearch.equals(i.getValue())).map(Map.Entry::getKey).collect(Collectors.toList());
-//        System.out.println(matchedCity);
-//
-//        List<String> matchedState=stateMapping.entrySet().stream().
-//                filter(j ->stateSearch.equals(j.getValue())).map(Map.Entry::getKey).collect(Collectors.toList());
-//        System.out.println(matchedCity);
-//    }
+//       for (Map.Entry<String,Person> state:statewithPerson.entrySet()){
+//           if(viewByState.equals(state.getKey())){
+//               for (Map.Entry<String,Person>city:citywithPerson.entrySet()){
+//                   if(viewByCity.equals(city.getKey())){
+//                       System.out.println(city.getValue());
+//                       flag=true;
+//                   }
+//               }
+//           }
+//       }
+//       if(!flag){
+//           System.out.println("Enter matching city with state");
+//       }
+//   }
+        List<Map.Entry<String, Person>> matchedCity= citywithPerson.entrySet().stream().
+                filter(i ->viewByCity.equals(i.getValue())).collect(Collectors.toList());
+        System.out.println(matchedCity);
+
+        List<Map.Entry<String, Person>> matchedState= statewithPerson.entrySet().stream().
+                filter(j ->viewByState.equals(j.getValue())).collect(Collectors.toList());
+        System.out.println(matchedState);
+    }
 
     public static void searchPersonByCity(ArrayList<Person> personInfo) {
         boolean flag =false;
