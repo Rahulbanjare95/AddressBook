@@ -1,4 +1,4 @@
-package com.Bridgelabz.services;
+package com.Bridgelabz.utilities;
 import com.Bridgelabz.models.Person;
 
 import java.util.*;
@@ -18,20 +18,20 @@ public class SearchAccordingly {
        String viewByCity=sc.nextLine();
        System.out.println("Enter the state name to view");
        String viewByState=sc.nextLine();
-//       for (Map.Entry<String,Person> state:statewithPerson.entrySet()){
-//           if(viewByState.equals(state.getKey())){
-//               for (Map.Entry<String,Person>city:citywithPerson.entrySet()){
-//                   if(viewByCity.equals(city.getKey())){
-//                       System.out.println(city.getValue());
-//                       flag=true;
-//                   }
-//               }
-//           }
-//       }
-//       if(!flag){
-//           System.out.println("Enter matching city with state");
-//       }
-//   }
+       for (Map.Entry<String,Person> state:statewithPerson.entrySet()){
+           if(viewByState.equals(state.getKey())){
+               for (Map.Entry<String,Person>city:citywithPerson.entrySet()){
+                   if(viewByCity.equals(city.getKey())){
+                       System.out.println(city.getValue());
+                       flag=true;
+                   }
+               }
+           }
+       }
+       if(!flag){
+           System.out.println("Enter matching city with state");
+       }
+
         List<Map.Entry<String, Person>> matchedCity= citywithPerson.entrySet().stream().
                 filter(i ->viewByCity.equals(i.getValue())).collect(Collectors.toList());
         System.out.println(matchedCity);
