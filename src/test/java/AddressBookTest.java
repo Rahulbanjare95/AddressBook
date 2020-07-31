@@ -13,11 +13,12 @@ public class AddressBookTest {
         try {
             ArrayList<Person> people = addressBookMain.addPersonInfo(person);
             addressBookMain.writeToJson("addressBook.json");
-
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    
+
+
 }

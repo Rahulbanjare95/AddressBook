@@ -1,13 +1,12 @@
 package com.Bridgelabz.main;
 
-import com.Bridgelabz.main.exceptions.AddressBookException;
 import com.Bridgelabz.models.Person;
-import org.json.simple.JSONObject;
+import com.opencsv.CSVWriter;
 
+import org.json.simple.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
 public class AddressBook{
     public static ArrayList<Person> personInfoArrayList=new ArrayList<Person>();
     JSONObject obj = new JSONObject();
@@ -27,6 +26,12 @@ public class AddressBook{
         file.write(obj.toJSONString());
         file.flush();
     }
+
+//    public void writeToCSV(List data, String filePath) throws IOException {
+//        CSVWriter writer = new CSVWriter(new FileWriter(filePath));
+//        writer.writeAll(data);
+//        writer.close();
+//    }
 
 
     public Map<String,String> cityHashTable(){
