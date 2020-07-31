@@ -13,7 +13,22 @@ public class AddressBookTest {
         try {
             ArrayList<Person> people = addressBookMain.addPersonInfo(person);
             addressBookMain.writeToJson("addressBook.json");
-            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenAPersonDetail_WhenAddedAndWrittenJsonUsingGSON_ShouldWriteIntoJsonFile() {
+        AddressBook addressBookMain = new AddressBook();
+        Person personOne = new Person("Rahul", "Banjare", "Raipur", "Chhattisgarh",
+                "45321", "8982423482");
+        Person personTwo = new Person("Shubham", "Kaser", "Janjgir", "Chhattisgarh",
+                "41111", "799001231");
+        try {
+            addressBookMain.addPersonInfo(personOne);
+            addressBookMain.addPersonInfo(personTwo);
+            addressBookMain.writeToGson("gsonExample.json");
         } catch (IOException e) {
             e.printStackTrace();
         }

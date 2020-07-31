@@ -1,6 +1,8 @@
 package com.Bridgelabz.main;
 
 import com.Bridgelabz.models.Person;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opencsv.CSVWriter;
 
 import org.json.simple.JSONObject;
@@ -32,7 +34,12 @@ public class AddressBook{
 //        writer.writeAll(data);
 //        writer.close();
 //    }
-
+    public void writeToGson(String filePath) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        FileWriter fileWriter = new FileWriter(filePath);
+        gson.toJson(personInfoArrayList, fileWriter);
+        fileWriter.close();
+    }
 
     public Map<String,String> cityHashTable(){
         Map<String,String> cityHashTable=new Hashtable<>();
@@ -133,6 +140,6 @@ public class AddressBook{
         }
     }
 
-   }
+}
 
 

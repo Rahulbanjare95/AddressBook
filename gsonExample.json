@@ -1,0 +1,18 @@
+[
+  {
+    "firstName": "Rahul",
+    "lastName": "Banjare",
+    "city": "Raipur",
+    "state": "Chhattisgarh",
+    "zipCode": "45321",
+    "phoneNumber": "8982423482"
+  },
+  {
+    "firstName": "Shubham",
+    "lastName": "Kaser",
+    "city": "Janjgir",
+    "state": "Chhattisgarh",
+    "zipCode": "41111",
+    "phoneNumber": "799001231"
+  }
+]
