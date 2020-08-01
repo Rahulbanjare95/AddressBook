@@ -6,9 +6,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class JsonWriter {
+
 
     public void writeAFile(List<Person>personList, String jsonFilePath) {
         JSONArray jsonArray = new JSONArray();
@@ -44,6 +46,13 @@ public class JsonWriter {
         }
     }
 
-
+    public void readWithGson(List<Person> personList, String jsonFilePath){
+        try {
+            Person[] personDetails = new Gson().fromJson(new FileReader(jsonFilePath),Person[].class);
+            personList.addAll(Arrays.asList(personDetails));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

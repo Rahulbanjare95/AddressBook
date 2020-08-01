@@ -12,8 +12,9 @@ public class AddressBookMain{
     {
         Scanner sc = new Scanner(System.in);
         AddressBook ad=new AddressBook();
+        boolean flag =true;
 
-        while (true) {
+        while (flag) {
             System.out.println("Press 1 - Add Person Information");
             System.out.println("Press 2 - Edit Person Information");
             System.out.println("Press 3 - Delete Person by name");
@@ -24,8 +25,11 @@ public class AddressBookMain{
             System.out.println("Press 8 - View by City State");
             System.out.println("Press 9 - Save to JSON");
             System.out.println("Press 10 - Save to CSV");
-            System.out.println("Press 11 - read  CSV");
-            System.out.println("Press 12 - Save to GSON");
+            System.out.println("Press 11 - Save  GSON ");
+            System.out.println("Press 12 - read csv");
+            System.out.println("Press 13 - read JSON");
+            System.out.println("Press 14 - exit");
+
 
             int option = sc.nextInt();
             sc.nextLine();
@@ -69,17 +73,26 @@ public class AddressBookMain{
                     System.out.println("Save to JSON");
                     ad.writeJSON(personInfoArrayList);
                     break;
+
                 case 10:
                     System.out.println("Save to CSV");
                     ad.writeCsv(personInfoArrayList);
                     break;
                 case 11:
-                    System.out.println("Read CSV");
-                    ad.writeCsv(personInfoArrayList);
-                    ad.readCSV(personInfoArrayList);
-                case 12:
                     System.out.println("Save to JSON with GSON Library");
                     ad.writeJSONUsingGSON(personInfoArrayList);
+                    break;
+                case 12:
+                    System.out.println("Read JSON");
+                    ad.readJSON(personInfoArrayList);
+                    break;
+                case 13:
+                    System.out.println("Read CSV");
+                    ad.readCSV(personInfoArrayList);
+                    break;
+                case 14:
+                    flag =false;
+                    break;
                 default:
                     System.out.println("Enter correct choice");
                     break;

@@ -7,6 +7,8 @@ import com.Bridgelabz.utility.SearchAccordingly;
 import com.Bridgelabz.utility.SortAddressBook;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -129,12 +131,16 @@ public class AddressBook {
     public void writeJSON(ArrayList<Person>personInfoArrayList){
         jsonReaderAndWriter.writeAFile(personInfoArrayList,JSON_SIMPLE_PATH);
     }
+    public void readJSON(ArrayList<Person>personArrayList){
+        jsonReaderAndWriter.readWithGson(personArrayList,JSON_SIMPLE_PATH);
+    }
+
     public void writeCsv(ArrayList<Person>personInfoArrayList){
         csvReaderAndWriter.writeToCSVFile(personInfoArrayList,CSV_FILE_PATH);
     }
 
     public void readCSV(ArrayList<Person>personInfoArrayList){
-        csvReaderAndWriter.readFromCSV(personInfoArrayList,CSV_FILE_PATH);
+        csvReaderAndWriter.readFromCSV(personInfoArrayList, CSV_FILE_PATH);
 
     }
 
