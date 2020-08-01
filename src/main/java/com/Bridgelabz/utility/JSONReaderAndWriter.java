@@ -1,6 +1,7 @@
 package com.Bridgelabz.utility;
 
 import com.Bridgelabz.models.Person;
+import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -29,6 +30,15 @@ public class JSONReaderAndWriter {
             fileWriter.write(jsonFilePath);
             fileWriter.append(jsonArray.toJSONString());
             fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void writeAGSONfile(List<Person> personList, String jsonFilePath){
+        String personInformation = new Gson().toJson(personList);
+        try {
+            FileWriter fileWriter = new FileWriter(jsonFilePath);
+            fileWriter.write(personInformation);
         } catch (IOException e) {
             e.printStackTrace();
         }

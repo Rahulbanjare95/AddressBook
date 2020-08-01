@@ -1,8 +1,6 @@
 package com.Bridgelabz.main;
-
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.services.AddressBook;
-import com.Bridgelabz.utility.JSONReaderAndWriter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +12,6 @@ public class AddressBookMain{
     {
         Scanner sc = new Scanner(System.in);
         AddressBook ad=new AddressBook();
-        JSONReaderAndWriter jsonReaderAndWriter = new JSONReaderAndWriter();
 
         while (true) {
             System.out.println("Press 1 - Add Person Information");
@@ -27,13 +24,14 @@ public class AddressBookMain{
             System.out.println("Press 8 - View by City State");
             System.out.println("Press 9 - Save to JSON");
             System.out.println("Press 10 - Save to CSV");
+            System.out.println("Press 11 - Save to GSON");
 
             int option = sc.nextInt();
             sc.nextLine();
 
             switch (option) {
                 case 1:
-                    ArrayList<Person> personArrayList = ad.addPersonInfo(personInfoArrayList);
+                    ad.addPersonInfo(personInfoArrayList);
                     ad.displayAddressBook(personInfoArrayList);
                     break;
                 case 2:
@@ -74,6 +72,9 @@ public class AddressBookMain{
                     System.out.println("Save to CSV");
                     ad.writeCsv(personInfoArrayList);
                     break;
+                case 11:
+                    System.out.println("Save to JSON with GSON Library");
+                    ad.writeJSONUsingGSON(personInfoArrayList);
                 default:
                     System.out.println("Enter correct choice");
                     break;

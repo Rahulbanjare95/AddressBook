@@ -1,4 +1,4 @@
-package com.Bridgelabz.services;
+package com.Bridgelabz.utility;
 import com.Bridgelabz.models.Person;
 
 import java.util.*;

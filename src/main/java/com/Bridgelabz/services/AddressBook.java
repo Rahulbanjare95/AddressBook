@@ -3,6 +3,8 @@ package com.Bridgelabz.services;
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.utility.CSVReaderAndWriter;
 import com.Bridgelabz.utility.JSONReaderAndWriter;
+import com.Bridgelabz.utility.SearchAccordingly;
+import com.Bridgelabz.utility.SortAddressBook;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class AddressBook {
     CSVReaderAndWriter csvReaderAndWriter = new CSVReaderAndWriter();
     String JSON_SIMPLE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personList.json";
     String CSV_FILE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personCSVList.csv";
+    String GSON_LIBRARY_JSON_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personListGSON.json";
 
     public ArrayList<Person> addPersonInfo(ArrayList<Person>personInfoArrayList) {
         String firstName, lastName, city, state, zipCode, phoneNumber;
@@ -131,6 +134,10 @@ public class AddressBook {
     }
     public void writeCsv(ArrayList<Person>personInfoArrayList){
         csvReaderAndWriter.writeToCSVFile(personInfoArrayList,CSV_FILE_PATH);
+    }
+
+    public void writeJSONUsingGSON(ArrayList<Person>peronInfoArrayList){
+        jsonReaderAndWriter.writeAGSONfile(peronInfoArrayList,GSON_LIBRARY_JSON_PATH);
     }
 
 }
