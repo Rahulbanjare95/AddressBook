@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import java.io.*;
 import java.util.List;
 
-public class JSONReaderAndWriter {
+public class JsonWriter {
 
     public void writeAFile(List<Person>personList, String jsonFilePath) {
         JSONArray jsonArray = new JSONArray();

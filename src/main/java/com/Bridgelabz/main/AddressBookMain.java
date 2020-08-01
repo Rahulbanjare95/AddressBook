@@ -44,7 +44,7 @@ public class AddressBookMain{
                     ad.displayAddressBook(personInfoArrayList);
                     break;
                 case 4:
-                    System.out.println("Sorting by firstname");
+                    System.out.println("Sorting by firstName");
                     ad.sortByFirstName(personInfoArrayList);
                     break;
                 case 5:

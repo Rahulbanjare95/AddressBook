@@ -2,7 +2,7 @@ package com.Bridgelabz.services;
 
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.utility.CSVReaderAndWriter;
-import com.Bridgelabz.utility.JSONReaderAndWriter;
+import com.Bridgelabz.utility.JsonWriter;
 import com.Bridgelabz.utility.SearchAccordingly;
 import com.Bridgelabz.utility.SortAddressBook;
 
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class AddressBook {
     private final static Scanner sc = new Scanner(System.in);
-    JSONReaderAndWriter jsonReaderAndWriter = new JSONReaderAndWriter();
+    JsonWriter jsonReaderAndWriter = new JsonWriter();
     CSVReaderAndWriter csvReaderAndWriter = new CSVReaderAndWriter();
     String JSON_SIMPLE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personList.json";
     String CSV_FILE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personCSVList.csv";
@@ -125,9 +125,6 @@ public class AddressBook {
 
     public void viewPersonByCityAndState(ArrayList<Person>personInfoArrayList){
         SearchAccordingly.viewCityStateWise(personInfoArrayList);
-    }
-    public void  viewPersonInACityOrState(ArrayList<Person>personInfoArrayList){
-        SearchAccordingly.viewPersonByCityOrState(personInfoArrayList);
     }
     public void writeJSON(ArrayList<Person>personInfoArrayList){
         jsonReaderAndWriter.writeAFile(personInfoArrayList,JSON_SIMPLE_PATH);
