@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SortAddressBook {
+
     public static  void sortByFirstName(ArrayList<Person>personInfo){
         personInfo.sort(Comparator.comparing(Person::getFirstName));
         printAllSorted(personInfo,element->true);
@@ -22,11 +23,7 @@ public class SortAddressBook {
         printAllSorted(personInfo,element->true);
     }
     public static void printAllSorted(ArrayList<Person> people, Checker c){
-        for (Person p:people) {
-            if (c.test(p)){
-                System.out.println(p);
-            }
-        }
+        people.stream().filter(c::test).forEachOrdered(System.out::println);
     }
 }
 interface Checker {
