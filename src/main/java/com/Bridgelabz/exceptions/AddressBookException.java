@@ -2,9 +2,10 @@ package com.Bridgelabz.main.exceptions;
 
 public class AddressBookException extends Exception {
 
+
     public enum ExceptionType {ALREADY_PRESENT}
 
-    private final ExceptionType type;
+    public  ExceptionType type;
 
     public AddressBookException(String message, ExceptionType type) {
         super(message);
