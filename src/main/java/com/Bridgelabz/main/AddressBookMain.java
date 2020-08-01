@@ -24,7 +24,8 @@ public class AddressBookMain{
             System.out.println("Press 8 - View by City State");
             System.out.println("Press 9 - Save to JSON");
             System.out.println("Press 10 - Save to CSV");
-            System.out.println("Press 11 - Save to GSON");
+            System.out.println("Press 11 - read  CSV");
+            System.out.println("Press 12 - Save to GSON");
 
             int option = sc.nextInt();
             sc.nextLine();
@@ -73,6 +74,10 @@ public class AddressBookMain{
                     ad.writeCsv(personInfoArrayList);
                     break;
                 case 11:
+                    System.out.println("Read CSV");
+                    ad.writeCsv(personInfoArrayList);
+                    ad.readCSV(personInfoArrayList);
+                case 12:
                     System.out.println("Save to JSON with GSON Library");
                     ad.writeJSONUsingGSON(personInfoArrayList);
                 default:

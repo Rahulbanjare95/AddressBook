@@ -133,6 +133,11 @@ public class AddressBook {
         csvReaderAndWriter.writeToCSVFile(personInfoArrayList,CSV_FILE_PATH);
     }
 
+    public void readCSV(ArrayList<Person>personInfoArrayList){
+        csvReaderAndWriter.readFromCSV(personInfoArrayList,CSV_FILE_PATH);
+
+    }
+
     public void writeJSONUsingGSON(ArrayList<Person>peronInfoArrayList){
         jsonReaderAndWriter.writeAGSONfile(peronInfoArrayList,GSON_LIBRARY_JSON_PATH);
     }
