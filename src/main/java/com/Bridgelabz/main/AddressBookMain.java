@@ -1,18 +1,18 @@
 package com.Bridgelabz.main;
+
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.services.AddressBook;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AddressBookMain{
-    public static ArrayList<Person> personInfoArrayList=new ArrayList<>();
+public class AddressBookMain {
+    public static ArrayList<Person> personInfoArrayList = new ArrayList<>();
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        AddressBook ad=new AddressBook();
-        boolean flag =true;
+        AddressBook ad = new AddressBook();
+        boolean flag = true;
 
         while (flag) {
             System.out.println("Press 1 - Add Person Information");
@@ -29,7 +29,6 @@ public class AddressBookMain{
             System.out.println("Press 12 - read csv");
             System.out.println("Press 13 - read JSON");
             System.out.println("Press 14 - exit");
-
 
             int option = sc.nextInt();
             sc.nextLine();
@@ -84,14 +83,14 @@ public class AddressBookMain{
                     break;
                 case 12:
                     System.out.println("Read JSON");
-                    ad.readJSON(personInfoArrayList);
+                    ad.readFromFile(personInfoArrayList);
                     break;
                 case 13:
                     System.out.println("Read CSV");
                     ad.readCSV(personInfoArrayList);
                     break;
                 case 14:
-                    flag =false;
+                    flag = false;
                     break;
                 default:
                     System.out.println("Enter correct choice");

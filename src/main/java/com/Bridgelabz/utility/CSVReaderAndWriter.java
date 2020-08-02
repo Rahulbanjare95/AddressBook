@@ -18,8 +18,8 @@ import java.util.List;
 
 public class CSVReaderAndWriter {
 
-    public void writeToCSVFile(List<Person>personList, String filePath){
-        try (Writer writer = Files.newBufferedWriter(Paths.get(filePath))){
+    public void writeToCSVFile(List<Person> personList, String filePath) {
+        try (Writer writer = Files.newBufferedWriter(Paths.get(filePath))) {
             StatefulBeanToCsv<Person> beanToCsv = new StatefulBeanToCsvBuilder(writer)
                     .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                     .build();
@@ -29,13 +29,13 @@ public class CSVReaderAndWriter {
         }
     }
 
-    public List<Person> readFromCSV(List<Person> personList, String filePath){
+    public List<Person> readFromCSV(List<Person> personList, String filePath) {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(filePath));
             CSVReader csvReader = new CSVReader(reader);
             String[] persons = csvReader.readNext();
-            while ((persons = csvReader.readNext())!=null){
-                personList.add(new Person(persons[1],persons[0],persons[2],persons[4],persons[3],persons[5]));
+            while ((persons = csvReader.readNext()) != null) {
+                personList.add(new Person(persons[1], persons[0], persons[2], persons[4], persons[3], persons[5]));
 
             }
         } catch (IOException | CsvValidationException e) {

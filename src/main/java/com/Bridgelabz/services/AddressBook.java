@@ -7,19 +7,17 @@ import com.Bridgelabz.utility.SearchAccordingly;
 import com.Bridgelabz.utility.SortAddressBook;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
     private final static Scanner sc = new Scanner(System.in);
     JsonWriter jsonReaderAndWriter = new JsonWriter();
     CSVReaderAndWriter csvReaderAndWriter = new CSVReaderAndWriter();
-    String JSON_SIMPLE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personList.json";
-    String CSV_FILE_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personCSVList.csv";
-    String GSON_LIBRARY_JSON_PATH = "C:\\Users\\rohitgoyal\\Desktop\\Fellow\\AddressBook\\src\\main\\resources\\personListGSON.json";
+    String JSON_SIMPLE_PATH = "addressbookSimple.json";
+    String CSV_FILE_PATH = "personCSVList.csv";
+    String GSON_LIBRARY_JSON_PATH = "personListGSON.json";
 
-    public ArrayList<Person> addPersonInfo(ArrayList<Person>personInfoArrayList) {
+    public ArrayList<Person> addPersonInfo(ArrayList<Person> personInfoArrayList) {
         String firstName, lastName, city, state, zipCode, phoneNumber;
         System.out.println("Add First name");
         firstName = sc.nextLine();
@@ -44,14 +42,13 @@ public class AddressBook {
         return personInfoArrayList;
     }
 
-    public void editperson(ArrayList<Person> personInfoArrayList)
-    {
+    public void editperson(ArrayList<Person> personInfoArrayList) {
 
         System.out.println("Enter the phonenumber to select Person and edit ");
-        String num=sc.nextLine();
+        String num = sc.nextLine();
         Person personDetail = personInfoArrayList.stream().filter(phoneNumber -> (phoneNumber.getPhoneNumber().equals(num)))
                 .findAny().orElse(null);
-        if (personDetail!= null) {
+        if (personDetail != null) {
 
             boolean counter = false;
             do {
@@ -88,64 +85,73 @@ public class AddressBook {
                         break;
                 }
             } while (!counter);
-        }else
+        } else
             System.out.println("Person not present");
     }
-    public void displayAddressBook(ArrayList<Person>personInfoArrayList)
-    {
+
+    public void displayAddressBook(ArrayList<Person> personInfoArrayList) {
         personInfoArrayList.forEach(System.out::println);
     }
-    public ArrayList<Person> deleteUsingName(ArrayList<Person> personInfoArrayList){
+
+    public ArrayList<Person> deleteUsingName(ArrayList<Person> personInfoArrayList) {
         System.out.println("Enter first name of the person you want to delete");
-        String nameinput=sc.nextLine();
-        boolean flag=false;
-        for(int index=0;index<personInfoArrayList.size();index++){
-            if((personInfoArrayList.get(index).getFirstName().equalsIgnoreCase(nameinput))){
+        String nameinput = sc.nextLine();
+        boolean flag = false;
+        for (int index = 0; index < personInfoArrayList.size(); index++) {
+            if ((personInfoArrayList.get(index).getFirstName().equalsIgnoreCase(nameinput))) {
                 personInfoArrayList.remove(index);
-                flag=true;
+                flag = true;
                 break;
             }
         }
-        if(!flag){
+        if (!flag) {
             System.out.println("Name not found in addressbook");
         }
         return personInfoArrayList;
     }
 
-    public void sortByFirstName(ArrayList<Person>personInfoArrayList){
+    public void sortByFirstName(ArrayList<Person> personInfoArrayList) {
         SortAddressBook.sortByFirstName(personInfoArrayList);
     }
-    public void sortByCity(ArrayList<Person>personInfoArrayList){
+
+    public void sortByCity(ArrayList<Person> personInfoArrayList) {
         SortAddressBook.sortByCity(personInfoArrayList);
     }
-    public void sortByState(ArrayList<Person>personInfoArrayList){
+
+    public void sortByState(ArrayList<Person> personInfoArrayList) {
         SortAddressBook.sortByState(personInfoArrayList);
     }
-    public void sortByZipCode(ArrayList<Person>personInfoArrayList){
+
+    public void sortByZipCode(ArrayList<Person> personInfoArrayList) {
         SortAddressBook.sortByZip(personInfoArrayList);
     }
 
-    public void viewPersonByCityAndState(ArrayList<Person>personInfoArrayList){
+    public void viewPersonByCityAndState(ArrayList<Person> personInfoArrayList) {
         SearchAccordingly.viewCityStateWise(personInfoArrayList);
     }
-    public void writeJSON(ArrayList<Person>personInfoArrayList){
-        jsonReaderAndWriter.writeAFile(personInfoArrayList,JSON_SIMPLE_PATH);
-    }
-    public void readJSON(ArrayList<Person>personArrayList){
-        jsonReaderAndWriter.readWithGson(personArrayList,JSON_SIMPLE_PATH);
+
+    public void writeJSON(ArrayList<Person> personInfoArrayList) {
+        jsonReaderAndWriter.writeAFile(personInfoArrayList, JSON_SIMPLE_PATH);
     }
 
-    public void writeCsv(ArrayList<Person>personInfoArrayList){
-        csvReaderAndWriter.writeToCSVFile(personInfoArrayList,CSV_FILE_PATH);
+    public void readJSON(ArrayList<Person> personArrayList) {
+        jsonReaderAndWriter.readWithGson(personArrayList, GSON_LIBRARY_JSON_PATH);
     }
 
-    public void readCSV(ArrayList<Person>personInfoArrayList){
+    public void writeCsv(ArrayList<Person> personInfoArrayList) {
+        csvReaderAndWriter.writeToCSVFile(personInfoArrayList, CSV_FILE_PATH);
+    }
+
+    public void readCSV(ArrayList<Person> personInfoArrayList) {
         csvReaderAndWriter.readFromCSV(personInfoArrayList, CSV_FILE_PATH);
 
     }
 
-    public void writeJSONUsingGSON(ArrayList<Person>peronInfoArrayList){
-        jsonReaderAndWriter.writeAGSONfile(peronInfoArrayList,GSON_LIBRARY_JSON_PATH);
+    public void writeJSONUsingGSON(ArrayList<Person> peronInfoArrayList) {
+        jsonReaderAndWriter.writeAGSONfile(peronInfoArrayList, GSON_LIBRARY_JSON_PATH);
     }
 
+    public void readFromFile(ArrayList<Person> personInfoArrayList) {
+        jsonReaderAndWriter.readFromFile(JSON_SIMPLE_PATH);
+    }
 }
