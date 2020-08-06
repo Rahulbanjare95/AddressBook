@@ -2,24 +2,21 @@ import com.Bridgelabz.services.AddressBook;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class AddressBookDataBaseTest {
 
     AddressBook  addressBook = new AddressBook();
 
     @Test
     public void givenQuery_WhenFetchAllDataFromDataBase_ShouldReturnNumberOfRows() {
-        int numberOfRows = addressBook.getNumberOfRows("select * from person");
-        Assert.assertEquals(3,numberOfRows);
+        int numberOfRows = addressBook.getNumberOfRows();
+        Assert.assertEquals(5,numberOfRows);
     }
 
     @Test
     public void givenQuery_WhenAddedNewPersonInDataBase_ShouldReturnNumberOfEntriesAdded() {
-        int entry = addressBook.insertDataInDatabase("insert into person " +
+        int entryAdded = addressBook.insertDataInDatabase("insert into person " +
                 "(first_name, last_name, city, state, zipcode, phone)" +
-                "values('Prashant', 'Jain', 'bengalore', 'karnataka', '343213', '10000000000');");
-        Assert.assertEquals(1,entry);
-
+                "values('Ayush', 'Agrawal', 'bellandur', 'karnataka', '121100', '9999333111');");
+        Assert.assertEquals(1,entryAdded);
     }
 }
