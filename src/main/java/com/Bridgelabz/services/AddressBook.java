@@ -1,11 +1,9 @@
 package com.Bridgelabz.services;
 
 import com.Bridgelabz.models.Person;
-import com.Bridgelabz.utility.CSVReaderAndWriter;
-import com.Bridgelabz.utility.JsonWriter;
-import com.Bridgelabz.utility.SearchAccordingly;
-import com.Bridgelabz.utility.SortAddressBook;
+import com.Bridgelabz.utility.*;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -127,7 +125,7 @@ public class AddressBook {
     }
 
     public void viewPersonByCityAndState(ArrayList<Person> personInfoArrayList) {
-        SearchAccordingly.viewCityStateWise(personInfoArrayList);
+        SearchAddressBook.viewCityStateWise(personInfoArrayList);
     }
 
     public void writeJSON(ArrayList<Person> personInfoArrayList) {
@@ -153,5 +151,42 @@ public class AddressBook {
 
     public void readFromFile(ArrayList<Person> personInfoArrayList) {
         jsonReaderAndWriter.readFromFile(JSON_SIMPLE_PATH);
+    }
+
+    public ArrayList<String> getNumberOfRecords(String Query) {
+        ArrayList<String> personData = new ArrayList<>();
+        try (Connection connection = DataBaseConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(Query);) {
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                personData.add(resultSet.getString("first_name"));
+                personData.add(resultSet.getString("last_name"));
+                personData.add(resultSet.getString("city"));
+                personData.add(resultSet.getString("state"));
+                personData.add(resultSet.getString("zipcode"));
+                personData.add(resultSet.getString("phone"));
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  personData;
+    }
+    public int getNumberOfRows(String Query){
+        ArrayList<String> numberOfRecords = getNumberOfRecords(Query);
+        return numberOfRecords.size()/6;
+    }
+
+    public int insertDataInDatabase(String Query){
+        try (Connection connection = DataBaseConnection.getConnection();
+             Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(Query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 }
