@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DataBaseConnection {
+
     public  static Connection getConnection(){
         Properties properties = new Properties();
         FileInputStream fileInputStream = null;
