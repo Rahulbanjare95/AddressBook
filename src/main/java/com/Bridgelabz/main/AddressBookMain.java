@@ -2,16 +2,21 @@ package com.Bridgelabz.main;
 
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.services.AddressBook;
+import com.Bridgelabz.services.AddressBookDatabase;
+import com.Bridgelabz.databaseUtility.DataBaseOperations;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain {
     public static ArrayList<Person> personInfoArrayList = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
         AddressBook ad = new AddressBook();
+        DataBaseOperations dataBaseOperations = new DataBaseOperations();
+        AddressBookDatabase addressBookDatabase = new AddressBookDatabase();
         boolean flag = true;
 
         while (flag) {
@@ -28,7 +33,7 @@ public class AddressBookMain {
             System.out.println("Press 11 - Save  GSON ");
             System.out.println("Press 12 - read csv");
             System.out.println("Press 13 - read JSON");
-            System.out.println("Press 14 - exit");
+            System.out.println("Press 14 - DataBase Operations");
 
             int option = sc.nextInt();
             sc.nextLine();
@@ -90,7 +95,7 @@ public class AddressBookMain {
                     ad.readCSV(personInfoArrayList);
                     break;
                 case 14:
-                    flag = false;
+                    dataBaseOperations.operations();
                     break;
                 default:
                     System.out.println("Enter correct choice");

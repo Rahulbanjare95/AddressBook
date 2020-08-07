@@ -19,4 +19,9 @@ public class AddressBookDataBaseTest {
                 "values('Ayush', 'Agrawal', 'bellandur', 'karnataka', '121100', '9999333111');");
         Assert.assertEquals(1,entryAdded);
     }
+
+    @Test
+    public void givenDetails_WhenAddedToAddressBook_ShoulReturnNumberOfEntries() {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.Bridgelabz.utility;
+package com.Bridgelabz.databaseUtility;
 
 import com.Bridgelabz.services.AddressBookDatabase;
 

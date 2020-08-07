@@ -1,4 +1,4 @@
-package com.Bridgelabz.utility;
+package com.Bridgelabz.services;
 
 import com.Bridgelabz.models.Person;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class SearchAccordingly {
+public class SearchAddressBook {
 
     public static void viewCityStateWise(ArrayList<Person> personInfo) {
         Scanner scanner = new Scanner(System.in);

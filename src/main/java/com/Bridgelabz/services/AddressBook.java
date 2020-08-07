@@ -1,5 +1,6 @@
 package com.Bridgelabz.services;
 
+import com.Bridgelabz.databaseUtility.DataBaseConnection;
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.utility.*;
 
@@ -11,6 +12,7 @@ public class AddressBook {
     private final static Scanner sc = new Scanner(System.in);
     JsonWriter jsonReaderAndWriter = new JsonWriter();
     CSVReaderAndWriter csvReaderAndWriter = new CSVReaderAndWriter();
+    AddressBookDatabase addressBookDatabase = new AddressBookDatabase();
     String JSON_SIMPLE_PATH = "addressbookSimple.json";
     String CSV_FILE_PATH = "personCSVList.csv";
     String GSON_LIBRARY_JSON_PATH = "personListGSON.json";
@@ -153,40 +155,63 @@ public class AddressBook {
         jsonReaderAndWriter.readFromFile(JSON_SIMPLE_PATH);
     }
 
-    public ArrayList<String> getNumberOfRecords(String Query) {
-        ArrayList<String> personData = new ArrayList<>();
+    public ArrayList<Person> getRecords(String Query) {
+        ArrayList<Person> personData = new ArrayList<>();
         try (Connection connection = DataBaseConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(Query);) {
             while(resultSet.next()){
                 int id = resultSet.getInt("id");
-                personData.add(resultSet.getString("first_name"));
-                personData.add(resultSet.getString("last_name"));
-                personData.add(resultSet.getString("city"));
-                personData.add(resultSet.getString("state"));
-                personData.add(resultSet.getString("zipcode"));
-                personData.add(resultSet.getString("phone"));
+                String firstName = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String city = resultSet.getString("city");
+                String state = resultSet.getString("state");
+                String zipcode = resultSet.getString("zipcode");
+                String phone = resultSet.getString("phone");
+                System.out.println(id+"firstName" +firstName+ "lastName"+last_name+"city"+city+"state"+state+"zipcode"+
+                        zipcode+"phone"+phone);
+                personData.add(new Person(firstName, last_name, city, state, zipcode, phone));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return personData;
+    }
+    public int getNumberOfRows(){
+        try (Connection connection = DataBaseConnection.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select count(*) from person");
+            resultSet.next();
+            return resultSet.getInt("count(*)");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int insertDataInDatabase(String Query){
+        try (Connection connection = DataBaseConnection.getConnection();
+             Statement statement = connection.createStatement()) {
+
+            return statement.executeUpdate(Query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public boolean updateDatabase(String Query){
+        try(Connection connection = DataBaseConnection.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(Query);){
+            while (resultSet.next()){
 
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return  personData;
-    }
-    public int getNumberOfRows(String Query){
-        ArrayList<String> numberOfRecords = getNumberOfRecords(Query);
-        return numberOfRecords.size()/6;
-    }
-
-    public int insertDataInDatabase(String Query){
-        try (Connection connection = DataBaseConnection.getConnection();
-             Statement statement = connection.createStatement()) {
-            return statement.executeUpdate(Query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return 0;
+        ;
+        return false;
     }
 }

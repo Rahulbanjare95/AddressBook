@@ -1,1 +1,12 @@
-"personList.json"[{"person":{"Zip Code":"123144","State":"chhattisgarh","First Name":"rahul","City":"sakti","Last Name":"banjare","Phone Number":"98823144"}}]
+"personList.json"[
+  {
+    "person": {
+      "Zip Code": "123144",
+      "State": "chhattisgarh",
+      "First Name": "rahul",
+      "City": "sakti",
+      "Last Name": "banjare",
+      "Phone Number": "98823144"
+    }
+  }
+]

@@ -17,24 +17,6 @@
       "state": "mh",
       "zipCode": "110111",
       "phone": "2222222212"
-    },
-    {
-      "firstName": "Vaibhav",
-      "lastName": "Singh",
-      "city": "korba",
-      "state": "cg",
-      "zipCode": "456737",
-      "phone": "8967654398",
-      "id": 4
-    },
-    {
-      "firstName": "Vaibhav",
-      "lastName": "Singh",
-      "city": "korba",
-      "state": "cg",
-      "zipCode": "456737",
-      "phone": "8967654398",
-      "id": 5
     }
   ]
 }

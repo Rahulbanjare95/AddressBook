@@ -1,4 +1,4 @@
-package com.Bridgelabz.utility;
+package com.Bridgelabz.services;
 
 import com.Bridgelabz.models.Person;
 
