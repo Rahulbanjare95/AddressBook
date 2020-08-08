@@ -2,8 +2,7 @@ package com.Bridgelabz.main;
 
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.services.AddressBook;
-import com.Bridgelabz.services.AddressBookDatabase;
-import com.Bridgelabz.databaseUtility.DataBaseOperations;
+import com.Bridgelabz.repository.DataBaseOperations;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ public class AddressBookMain {
         Scanner sc = new Scanner(System.in);
         AddressBook ad = new AddressBook();
         DataBaseOperations dataBaseOperations = new DataBaseOperations();
-        AddressBookDatabase addressBookDatabase = new AddressBookDatabase();
         boolean flag = true;
 
         while (flag) {
@@ -34,7 +32,7 @@ public class AddressBookMain {
             System.out.println("Press 12 - read csv");
             System.out.println("Press 13 - read JSON");
             System.out.println("Press 14 - DataBase Operations");
-
+            System.out.println("Press 15 - Exit");
             int option = sc.nextInt();
             sc.nextLine();
 
@@ -96,6 +94,10 @@ public class AddressBookMain {
                     break;
                 case 14:
                     dataBaseOperations.operations();
+                    break;
+                case 15:
+                    flag = false;
+                    System.out.println("Exiting");
                     break;
                 default:
                     System.out.println("Enter correct choice");

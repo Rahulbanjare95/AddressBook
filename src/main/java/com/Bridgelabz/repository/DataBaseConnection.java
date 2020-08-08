@@ -1,4 +1,4 @@
-package com.Bridgelabz.databaseUtility;
+package com.Bridgelabz.repository;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class DataBaseConnection {
     public  static Connection getConnection(){
         Properties properties = new Properties();
         FileInputStream fileInputStream = null;
-        Connection con = null;
+        Connection connection = null;
         try{
             fileInputStream = new FileInputStream("db.properties");
             properties.load(fileInputStream);
@@ -21,13 +21,13 @@ public class DataBaseConnection {
             Class.forName(properties.getProperty("DB_DRIVER_CLASS"));
 
             // open a connection
-            con = DriverManager.getConnection(properties.getProperty("DB_URL"),
+            connection = DriverManager.getConnection(properties.getProperty("DB_URL"),
                     properties.getProperty("DB_USERNAME"), properties.getProperty("DB_PASSWORD"));
 
         } catch (SQLException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return con;
+        return connection;
     }
 
     public static void closeConnection(Connection connection){

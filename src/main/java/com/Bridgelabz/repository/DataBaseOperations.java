@@ -1,4 +1,4 @@
-package com.Bridgelabz.databaseUtility;
+package com.Bridgelabz.repository;
 
 import com.Bridgelabz.services.AddressBookDatabase;
 
@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class DataBaseOperations {
 
-    AddressBookDatabase addressBookDatabase= new AddressBookDatabase();
+    AddressBookDatabase addressBookDatabase = new AddressBookDatabase();
     Scanner scanner = new Scanner(System.in);
+
     public void operations() throws SQLException {
         System.out.println("Enter the number to do your operation\n"
                 + "\t1: Display records\n"
@@ -19,9 +20,9 @@ public class DataBaseOperations {
                 + "\t6. Exit \n");
 
         int flag = 0;
-        while( flag==0){
+        while (flag == 0) {
             int options = scanner.nextInt();
-            switch ( options){
+            switch (options) {
                 case 1:
                     addressBookDatabase.getRecords();
                     break;

@@ -1,10 +1,8 @@
 package com.Bridgelabz.services;
 
-import com.Bridgelabz.databaseUtility.DataBaseConnection;
 import com.Bridgelabz.models.Person;
 import com.Bridgelabz.utility.*;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -134,9 +132,6 @@ public class AddressBook {
         jsonReaderAndWriter.writeAFile(personInfoArrayList, JSON_SIMPLE_PATH);
     }
 
-    public void readJSON(ArrayList<Person> personArrayList) {
-        jsonReaderAndWriter.readWithGson(personArrayList, GSON_LIBRARY_JSON_PATH);
-    }
 
     public void writeCsv(ArrayList<Person> personInfoArrayList) {
         csvReaderAndWriter.writeToCSVFile(personInfoArrayList, CSV_FILE_PATH);
@@ -155,63 +150,5 @@ public class AddressBook {
         jsonReaderAndWriter.readFromFile(JSON_SIMPLE_PATH);
     }
 
-    public ArrayList<Person> getRecords(String Query) {
-        ArrayList<Person> personData = new ArrayList<>();
-        try (Connection connection = DataBaseConnection.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query);) {
-            while(resultSet.next()){
-                int id = resultSet.getInt("id");
-                String firstName = resultSet.getString("first_name");
-                String last_name = resultSet.getString("last_name");
-                String city = resultSet.getString("city");
-                String state = resultSet.getString("state");
-                String zipcode = resultSet.getString("zipcode");
-                String phone = resultSet.getString("phone");
-                System.out.println(id+"firstName" +firstName+ "lastName"+last_name+"city"+city+"state"+state+"zipcode"+
-                        zipcode+"phone"+phone);
-                personData.add(new Person(firstName, last_name, city, state, zipcode, phone));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return personData;
-    }
-    public int getNumberOfRows(){
-        try (Connection connection = DataBaseConnection.getConnection();
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select count(*) from person");
-            resultSet.next();
-            return resultSet.getInt("count(*)");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
-    public int insertDataInDatabase(String Query){
-        try (Connection connection = DataBaseConnection.getConnection();
-             Statement statement = connection.createStatement()) {
-
-            return statement.executeUpdate(Query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public boolean updateDatabase(String Query){
-        try(Connection connection = DataBaseConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(Query);){
-            while (resultSet.next()){
-
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        ;
-        return false;
-    }
 }

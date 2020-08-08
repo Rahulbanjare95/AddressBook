@@ -1,7 +1,7 @@
 package com.Bridgelabz.services;
 
+import com.Bridgelabz.repository.DataBaseConnection;
 import com.Bridgelabz.models.Person;
-import com.Bridgelabz.databaseUtility.DataBaseConnection;
 import com.Bridgelabz.utility.UserInputs;
 
 import java.sql.*;
@@ -40,8 +40,9 @@ public class AddressBookDatabase {
             preparedStatement.setString(5, zipcode);
             preparedStatement.setString(6, phone);
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            preparedStatement.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
         System.out.println("Data inserted successfully");
     }
@@ -95,7 +96,7 @@ public class AddressBookDatabase {
             preparedStatement = connection.prepareStatement(updateQuery);
             preparedStatement.executeUpdate();
             System.out.println("Details updated");
-
+            preparedStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -110,9 +111,9 @@ public class AddressBookDatabase {
         try (Connection connection = DataBaseConnection.getConnection()) {
             preparedStatement = connection.prepareStatement(deleteQuery);
             preparedStatement.execute();
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            preparedStatement.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
         System.out.println("Deleted record");
     }
@@ -134,13 +135,14 @@ public class AddressBookDatabase {
                 System.out.println(id + " " + firstName + " " + last_name + " " + city + " " + state + " " +
                         zipcode + " " + phone);
                 personData.add(new Person(firstName, last_name, city, state, zipcode, phone));
+
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
     }
 
-    private  void getResultBasedOnQuery(String query) throws SQLException {
+    private void getResultBasedOnQuery(String query) throws SQLException {
         ArrayList<Person> personData = new ArrayList<>();
         try (Connection connection = DataBaseConnection.getConnection();
              Statement statement = connection.createStatement();
@@ -165,9 +167,9 @@ public class AddressBookDatabase {
         int counter = 0;
         String query = "";
 
-        while ( counter == 0){
+        while (counter == 0) {
             int options = userInputs.sortMenu();
-            switch (options){
+            switch (options) {
                 case 1:
                     query = "SELECT * FROM person ORDER BY first_name ASC";
                     this.getResultBasedOnQuery(query);

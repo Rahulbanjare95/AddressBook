@@ -1,4 +1,4 @@
-import com.Bridgelabz.databaseUtility.DataBaseConnection;
+import com.Bridgelabz.repository.DataBaseConnection;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,8 +24,8 @@ public class DataBaseConnectionTest {
         try {
             boolean closed = connection.isClosed();
             Assert.assertFalse(closed);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
     }
 
@@ -35,8 +35,8 @@ public class DataBaseConnectionTest {
             DataBaseConnection.closeConnection(connection);
             boolean closed = connection.isClosed();
             Assert.assertTrue(closed);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
     }
 
